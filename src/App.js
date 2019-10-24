@@ -14,15 +14,14 @@ function App() {
             do not attempt to cover all aspects of their subject matter, but
             present one facet of the idea clearly and succinctly.
           </p>
-        {/* <a
+        <a
           className="App-link"
-          href="https://reactjs.org"
+          href='Link'
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
-        </a> */}
-         <button type="submit">Share your idea here</button>
+          Share your idea here
+        </a>
       </header>
     </div>
   );
