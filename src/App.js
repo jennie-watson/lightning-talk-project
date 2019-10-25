@@ -1,14 +1,12 @@
 import React, { Component } from "react"
-
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-// import injectTapEventPlugin from 'react-tap-event-plugin';
+import { createMuiTheme } from '@material-ui/core/styles';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 import logo2 from "./logo2.png"
 import "./App.css"
 import Form from "./Form"
-// import FormTable from './FormTable'
 
-// injectTapEventPlugin();
+const theme = createMuiTheme();
 
 class App extends Component {
   state = {
@@ -26,7 +24,7 @@ class App extends Component {
   
   render() {
     return (
-      // <MuiThemeProvider>
+      <MuiThemeProvider theme={theme}>
         <div className="App">
           <header className="App-header">
             <img src={logo2} className="stuff-logo" alt="logo" />
@@ -52,7 +50,7 @@ class App extends Component {
               </div>
           </header>
         </div>
-        // </MuiThemeProvider>
+        </MuiThemeProvider>
       )
     }
     }

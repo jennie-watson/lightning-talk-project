@@ -1,4 +1,6 @@
 import React from 'react'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
 export default class Form extends React.Component {
   state = {
@@ -32,28 +34,34 @@ onSubmit = (e) => {
 render() {
   return (
     <form>
-      <input
-        name='email' 
-        placeholder='Email address' 
+      <TextField
+        type='email'
+        hinttext="Email"
+        floatinglabeltext="Email"
         value={this.state.email} 
         onChange={e => this.change(e)}
+        floatinglabelfixed="true"
       />
       <br />
-      <input 
-        name='topic'
-        placeholder='Topic' 
+      <TextField
+        hinttext="Topic"
+        floatinglabeltext="Topic"
         value={this.state.topic} 
         onChange={e => this.change(e)}
+        floatinglabelfixed="true"
       />
       <br />
-      <input 
-        name='description'
-        placeholder='Description' 
+      <TextField
+        hinttext="Description"
+        floatinglabeltext="Description"
         value={this.state.description} 
         onChange={e => this.change(e)}
+        floatinglabelfixed="true"
       />
       <br />
-      <button onClick={e => this.onSubmit(e)}>Submit</button>
+      <Button variant="contained" color="primary" label="Submit" onClick={e => this.onSubmit(e)} primary="true">
+        Submit
+      </Button>
       </form>
     )
   }
