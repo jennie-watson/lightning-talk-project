@@ -1,4 +1,4 @@
-  body {
+body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
@@ -8,7 +8,7 @@
   text-align: center;
 }
 
-.stuff-logo {
+.logo {
   height: 15vmin;
 }
 
@@ -23,6 +23,14 @@
   color: white;
 }
 
-.App-link {
+.Login-link {
   color: #09d3ac;
+  text-decoration: none;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
