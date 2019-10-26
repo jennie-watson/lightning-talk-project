@@ -28,9 +28,15 @@ body {
   text-decoration: none;
 }
 
+.Form-link {
+  color: #09d3ac;
+  text-decoration: none;
+}
+
 .form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 150px;
 }
