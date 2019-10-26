@@ -1,26 +1,30 @@
 import React from "react"
-import Form from "./Form"
+// import Form from "./Form"
 import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
 import "../styles/App.css"
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
+
+// const theme = createMuiTheme()
 
 class Forms extends React.Component {
   state = {
     email: "",
+    emailError: "",
     topic: "",
+    topicError: "",
     description: "",
-    fields: {}
+    descriptionError: "",
+    // fields: {}
   }
 
-  onChange = updatedValue => {
-    this.setState({
-      fields: {
-        ...this.state.fields,
-        ...updatedValue
-      }
-    })
-  }
+  // onChange = updatedValue => {
+  //   this.setState({
+  //     fields: {
+  //       ...this.state.fields,
+  //       ...updatedValue
+  //     }
+  //   })
+  // }
 
   // FORM BREAKING AND NOT RENDERING HERE
   // <Form onChange={fields => this.onChange(fields)} /> 
@@ -32,25 +36,56 @@ class Forms extends React.Component {
     })
   }
 
+  validate = () => {
+    let isError = false
+    const errors = {
+      emailError: "",
+      topicError: "",
+      descriptionError: ""
+    }
+
+    if (this.state.topic.length > 80) {
+      isError = true
+      errors.topicError = "Topic needs to be less than 80 characters long"
+    }
+
+    if (this.state.email.indexOf("@") === -1) {
+      isError = true
+      errors.emailError = "Requires valid email"
+    }
+
+    this.setState({
+      ...this.state,
+      ...errors
+    })
+
+    return isError
+  }
+
 onSubmit = e => {
   e.preventDefault()
   // this.props.onSubmit(this.state)
-  this.setState({
-    email: "",
-    topic: "",
-    description: "",
-  })
-
-  this.props.onChange({
-    email: "",
-    topic: "",
-    description: "",
-  })
+  const err = this.validate()
+  if (!err) {
+    // clear form
+    this.setState({
+      email: "",
+      emailError: "",
+      topic: "",
+      topicError: "",
+      description: "",
+      descriptionError: ""
+    })
+    this.props.onChange({
+      email: "",
+      topic: "",
+      description: "",
+    })
+  }
 }
 
 render() {
   return (
-    <MuiThemeProvider>
       <form className="form">
         <TextField
           name="email"
@@ -61,6 +96,7 @@ render() {
           variant="outlined"
           value={this.state.email} 
           onChange={e => this.change(e)}
+          errortext={this.state.emailError}
           style={{width: "50%"}}
         />
         <br />
@@ -73,6 +109,7 @@ render() {
           variant="outlined"
           value={this.state.topic} 
           onChange={e => this.change(e)}
+          errortext={this.state.topicError}
           style={{width: "50%"}}
         />
         <br />
@@ -87,16 +124,16 @@ render() {
           variant="outlined"
           value={this.state.description} 
           onChange={e => this.change(e)}
+          errortext={this.state.descriptionError}
           maxLength="120" // max word length is 120
           style={{width: "50%"}}
         />
         <br />
-        <Button variant="contained" color="primary" style={{width: "25%"}} onClick={e => this.onSubmit(e)} primary="true">Submit</Button>
-        <p>
+        <Button label="submit" variant="contained" color="primary" style={{width: "25%"}} onClick={e => this.onSubmit(e)} primary="true">Submit</Button>
+        {/* <p>
           {JSON.stringify(this.state.fields, null, 2)}
-        </p>
+        </p> */}
         </form>
-      </MuiThemeProvider>
     )
   }
 }

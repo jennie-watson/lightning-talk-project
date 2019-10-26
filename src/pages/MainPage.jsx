@@ -1,11 +1,14 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import logo from "../images/logo.png"
-// import Form from "./Form"
+import Form from "./Form"
 
 // Styles
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
+// import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 import "../styles/App.css"
+
+const theme = createMuiTheme()
 
 class MainPage extends Component {
   state = {
@@ -23,7 +26,7 @@ class MainPage extends Component {
 
   render() {
     return (
-      <MuiThemeProvider>
+      <MuiThemeProvider theme={theme}>
         <div className="App">
         <header className="App-header">
           <img src={logo} className="logo" alt="logo" />
@@ -34,10 +37,10 @@ class MainPage extends Component {
           <Link to="/login" className="Login-link">Login Here</Link>
           <Link to="/form" className="Form-link">Share your idea here</Link>
           </header>
-          {/* <Form onChange={fields => this.onChange(fields)} />
+          <Form onChange={fields => this.onChange(fields)} />
           <p>
             {JSON.stringify(this.state.fields, null, 2)}
-          </p> */}
+          </p>
         </div>
       </MuiThemeProvider>
     )
