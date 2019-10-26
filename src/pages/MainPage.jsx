@@ -8,7 +8,7 @@ import Form from "./Form"
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 import "../styles/App.css"
 
-const theme = createMuiTheme()
+const theme = createMuiTheme();
 
 class MainPage extends Component {
   state = {
@@ -36,6 +36,7 @@ class MainPage extends Component {
           </p>
           <Link to="/login" className="Login-link">Login Here</Link>
           <Link to="/form" className="Form-link">Share your idea here</Link>
+          <Link to="/table" className="Table-link">See the submissions here</Link>
           </header>
           <Form onChange={fields => this.onChange(fields)} />
           <p>

@@ -3,10 +3,11 @@ import React from "react"
 import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
 import "../styles/App.css"
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 
-// const theme = createMuiTheme()
+const theme = createMuiTheme();
 
-class Forms extends React.Component {
+class Form extends React.Component {
   state = {
     email: "",
     emailError: "",
@@ -44,14 +45,19 @@ class Forms extends React.Component {
       descriptionError: ""
     }
 
-    if (this.state.topic.length > 80) {
-      isError = true
-      errors.topicError = "Topic needs to be less than 80 characters long"
-    }
-
     if (this.state.email.indexOf("@") === -1) {
       isError = true
       errors.emailError = "Requires valid email"
+    }
+
+    if (this.state.email.length > 255) {
+      isError = true
+      errors.topicError = "Email needs to be less than 255 characters long"
+    }
+
+    if (this.state.topic.length > 80) {
+      isError = true
+      errors.topicError = "Topic needs to be less than 80 characters long"
     }
 
     this.setState({
@@ -86,8 +92,12 @@ onSubmit = e => {
 
 render() {
   return (
+    <MuiThemeProvider theme={theme}>
+    {/* <div className="App"> */}
+    {/* <header className="App-header"> */}
+    <h1 className="form-header">Lightning Talks</h1>
       <form className="form">
-        <TextField
+        <TextField className="text-field"
           name="email"
           label="Email"
           id="outlined-multiline-static"
@@ -129,13 +139,16 @@ render() {
           style={{width: "50%"}}
         />
         <br />
-        <Button label="submit" variant="contained" color="primary" style={{width: "25%"}} onClick={e => this.onSubmit(e)} primary="true">Submit</Button>
+        <Button label="submit" variant="contained" className="button" style={{width: "25%"}} onClick={e => this.onSubmit(e)} primary="true">Submit</Button>
         {/* <p>
           {JSON.stringify(this.state.fields, null, 2)}
         </p> */}
         </form>
+        {/* </header> */}
+        {/* </div> */}
+      </MuiThemeProvider>
     )
   }
 }
 
-export default Forms
+export default Form

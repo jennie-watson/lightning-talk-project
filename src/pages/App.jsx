@@ -10,7 +10,7 @@ import {
 import MainPage from "./MainPage"
 import Form from "./Form"
 // import Login from "./Login"
-// import Submissions from "./Submissions"
+import Table from "./Table"
 import NotFoundPage from "./NotFoundPage"
 
 class App extends Component {
@@ -21,7 +21,7 @@ class App extends Component {
       <Route exact path="/" component={MainPage} />
       <Route path="/form" component={Form} />
       {/* <Route path="/login" component={Login} /> */}
-      {/* <Route path="/submissions" component={Submissions} /> */}
+      <Route path="/table" component={Table} />
       <Route exact path="/404" component={NotFoundPage} />
       <Redirect to="/404" />
       </Switch>
