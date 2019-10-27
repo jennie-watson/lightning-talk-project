@@ -13,6 +13,10 @@ body {
   height: 15vmin;
 }
 
+.main-header {
+  font-weight: bold;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
