@@ -48,4 +48,4 @@ class Table extends React.Component {
 
 // ReactDOM.render(<Table />, document.getElementById('root'));
 
-export default Table //exporting a component make it reusable and this is the beauty of react
+export default Table

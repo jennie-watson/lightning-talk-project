@@ -5,30 +5,38 @@ import Button from "@material-ui/core/Button"
 import "../styles/App.css"
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 
-const theme = createMuiTheme();
+const theme = createMuiTheme()
 
 class Form extends React.Component {
-  state = {
-    email: "",
-    emailError: "",
-    topic: "",
-    topicError: "",
-    description: "",
-    descriptionError: "",
-    // fields: {}
+  constructor(props) {
+    super(props)
+    this.state = {
+      email: "",
+      emailError: "",
+      topic: "",
+      topicError: "",
+      description: "",
+      descriptionError: "",
+      fields: {}
+    }
   }
 
-  // onChange = updatedValue => {
-  //   this.setState({
-  //     fields: {
-  //       ...this.state.fields,
-  //       ...updatedValue
-  //     }
-  //   })
-  // }
+  onChange = updatedValue => {
+    this.setState({
+      fields: {
+        ...this.state.fields,
+        ...updatedValue
+      }
+    })
+  }
 
-  // FORM BREAKING AND NOT RENDERING HERE
-  // <Form onChange={fields => this.onChange(fields)} /> 
+  onChange = (fields) => {
+    this.onChange(fields)
+  }
+
+  handleChange = event => {
+    this.setState({ [event.target.value]: event.target.value });
+  }
 
   change = e => {
     this.props.onChange({ [e.target.name]: e.target.value })
@@ -68,44 +76,41 @@ class Form extends React.Component {
     return isError
   }
 
-onSubmit = e => {
-  e.preventDefault()
-  // this.props.onSubmit(this.state)
-  const err = this.validate()
-  if (!err) {
-    // clear form
-    this.setState({
-      email: "",
-      emailError: "",
-      topic: "",
-      topicError: "",
-      description: "",
-      descriptionError: ""
-    })
-    this.props.onChange({
-      email: "",
-      topic: "",
-      description: "",
-    })
+  onSubmit = e => {
+    e.preventDefault()
+    // this.props.onSubmit(this.state)
+    const err = this.validate()
+    if (!err) {
+      // clear form
+      this.setState({
+        email: "",
+        emailError: "",
+        topic: "",
+        topicError: "",
+        description: "",
+        descriptionError: ""
+      })
+      this.props.onChange({
+        email: "",
+        topic: "",
+        description: "",
+      })
+    }
   }
-}
 
 render() {
   return (
     <MuiThemeProvider theme={theme}>
-    {/* <div className="App"> */}
-    {/* <header className="App-header"> */}
     <h1 className="form-header">Lightning Talks</h1>
       <form className="form">
         <TextField className="text-field"
           name="email"
           label="Email"
           id="outlined-multiline-static"
-          className="textField"
           margin="normal"
           variant="outlined"
           value={this.state.email} 
-          onChange={e => this.change(e)}
+          onChange={this.handleChange}
           errortext={this.state.emailError}
           style={{width: "50%"}}
         />
@@ -114,11 +119,10 @@ render() {
           name="topic"
           label="Topic"
           id="outlined-multiline-static"
-          className="textField"
           margin="normal"
           variant="outlined"
           value={this.state.topic} 
-          onChange={e => this.change(e)}
+          onChange={this.handleChange}
           errortext={this.state.topicError}
           style={{width: "50%"}}
         />
@@ -129,23 +133,20 @@ render() {
           id="outlined-multiline-static"
           multiline
           rows="8"
-          className="textField"
           margin="normal"
           variant="outlined"
           value={this.state.description} 
-          onChange={e => this.change(e)}
+          onChange={this.handleChange}
           errortext={this.state.descriptionError}
           maxLength="120" // max word length is 120
           style={{width: "50%"}}
         />
         <br />
         <Button label="submit" variant="contained" className="button" style={{width: "25%"}} onClick={e => this.onSubmit(e)} primary="true">Submit</Button>
-        {/* <p>
+        <p>
           {JSON.stringify(this.state.fields, null, 2)}
-        </p> */}
+        </p>
         </form>
-        {/* </header> */}
-        {/* </div> */}
       </MuiThemeProvider>
     )
   }
