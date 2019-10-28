@@ -14,26 +14,41 @@ import Table from "./pages/Table"
 import NotFoundPage from "./pages/NotFoundPage"
 
 class App extends Component {
-  state = {
-    data: null
-  }
-
-  componentDidMount() {
-    // Call our fetch function below once the component mounts
-  this.callBackendAPI()
-    .then(res => this.setState({ data: res.express }))
-    .catch(err => console.log(err));
+  constructor(props) {
+    super(props);
+    this.state = { apiResponse: "" };
 }
-  // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
-  callBackendAPI = async () => {
-    const response = await fetch('/express_backend');
-    const body = await response.json();
 
-    if (response.status !== 200) {
-      throw Error(body.message) 
-    }
-    return body;
-  };
+callAPI() {
+    fetch("http://localhost:9000/testAPI")
+        .then(res => res.text())
+        .then(res => this.setState({ apiResponse: res }));
+}
+
+componentDidMount() {
+    this.callAPI();
+}
+
+//   state = {
+//     data: null
+//   }
+
+//   componentDidMount() {
+//     // Call our fetch function below once the component mounts
+//   this.callBackendAPI()
+//     .then(res => this.setState({ data: res.express }))
+//     .catch(err => console.log(err));
+// }
+//   // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
+//   callBackendAPI = async () => {
+//     const response = await fetch('/express_backend');
+//     const body = await response.json();
+
+//     if (response.status !== 200) {
+//       throw Error(body.message) 
+//     }
+//     return body;
+//   };
 
   render() {
     return (
@@ -45,7 +60,7 @@ class App extends Component {
           <Route path="/table" component={Table} />
           <Route exact path="/404" component={NotFoundPage} />
           <Redirect to="/404" />
-          <p className="App-intro">{this.state.data}</p>
+          <p className="App-intro">;{this.state.apiResponse}</p>
         </Switch>
       </Router>
     )
