@@ -1,39 +1,64 @@
-import React, {Component} from 'react';
-// import Login from "./Login"
+import React from "react"
+import "../styles/App.css"
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
+import TextField from "@material-ui/core/TextField"
+import Button from "@material-ui/core/Button"
 
-class Login extends Component {
+const theme = createMuiTheme()
+
+class Login extends React.Component {
   constructor(){
-    super();
+    super()
       this.state = {
-        username: '',
-        password: '',
+        email: "",
+        password: "",
         redirectToReferrer: false
-        };
-      this.login = this.login.bind(this);
-      this.onChange = this.onChange.bind(this);
+        }
+      this.login = this.login.bind(this)
+      this.onChange = this.onChange.bind(this)
       }
       login() {
       //API Action Here
       }
 
       onChange(e){
-      this.setState({[e.target.name]:e.target.value});
+      this.setState({[e.target.name]:e.target.value})
       }
 
-      render() {
-        return (
-          <div className="row" id="Body">
-          <div className="medium-5 columns left">
-          <h4>Login</h4>
-          <label>Username</label>
-          <input type="text" name="username" onChange={this.onChange}/>
-          <label>Password</label>
-          <input type="password" name="password" onChange={this.onChange}/>
-          <input type="submit" value="Login" onClick={this.login}/>
-          <a href="/signup">Registration</a>
+    render() {
+      return (
+        <MuiThemeProvider theme={theme}>
+          <div className="login">
+          <h1 className="login-header">Login</h1>
+          <TextField 
+          label="Email"
+          type="text" 
+          name="username" 
+          onChange={this.onChange}
+          style={{width: "50%"}} 
+          />
+          <br />
+          <TextField
+          label="Password"
+          type="password" 
+          name="password" 
+          onChange={this.onChange}
+          style={{width: "50%"}}
+          />
+          <br />
+          <br />
+          <Button 
+          label="Login" 
+          value="Login"
+          variant="contained" 
+          className="button" 
+          style={{width: "25%"}} 
+          onClick={this.login}
+          primary="true">Login
+          </Button>
           </div>
-          </div>
-      );
+        </MuiThemeProvider>
+      )
     }
   }
 
