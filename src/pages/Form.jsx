@@ -87,7 +87,7 @@ render() {
   return (
     <MuiThemeProvider theme={theme}>
     <h1 className="form-header">Lightning Talks</h1>
-      <form className="form">
+      <form className="form" method="POST" action="/table">
         <br />
         <TextField
           name="topic"
@@ -118,7 +118,8 @@ render() {
           required={true}
         />
         <br />
-        <Button 
+        <Button
+        type="submit"
         label="submit" 
         variant="contained" 
         className="button" 
