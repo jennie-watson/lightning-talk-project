@@ -76,10 +76,6 @@ class Form extends React.Component {
         description: "",
         descriptionError: ""
       })
-      this.props.onSubmit({
-        topic: "",
-        description: "",
-      })
     }
   }
 

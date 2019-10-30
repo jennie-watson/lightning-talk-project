@@ -9,6 +9,7 @@ import {
 // Pages
 import MainPage from "./pages/MainPage"
 import Form from "./pages/Form"
+// import Submit from "./pages/Submit"
 import Login from "./pages/Login"
 import Table from "./pages/Table"
 import NotFoundPage from "./pages/NotFoundPage"
@@ -36,6 +37,7 @@ componentDidMount() {
           <Route exact path="/" component={MainPage} />
           <Route path="/form" component={Form} />
           <Route path="/login" component={Login} />
+          {/* <Route path="/submit" component={Submit} /> */}
           <Route path="/table" component={Table} />
           <Route exact path="/404" component={NotFoundPage} />
           <Redirect to="/404" />

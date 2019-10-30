@@ -41,6 +41,7 @@ class Table extends React.Component {
             {this.renderTableData()}
           </tbody>
         </table>
+        <p>Thank you for your submission, we really appreciate it!</p>
       </div>
     )
   }
